@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { useState, useEffect } from 'react';
+import api from './api'; // Importe a instância do Axios configurada
 
 function App() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    // Faça a chamada GET à API quando o componente for montado
+    api.get('/products')
+      .then((response) => {
+        setProducts(response.data);
+      })
+      .catch((error) => {
+        console.error('Erro ao buscar produtos:', error);
+      });
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Lista de Produtos</h1>
+      <ul>
+        {products.map((product) => (
+          <li key={product.id}>
+            {product.name} - {product.price}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
