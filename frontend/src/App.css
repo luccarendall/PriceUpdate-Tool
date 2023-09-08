@@ -8,11 +8,15 @@ body {
 }
 
 .products-container {
-  text-align: center;
+  text-align: left;
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   background-color: #f0f0f0;
+}
+
+ul {
+  list-style: none;
 }
 
 h1 {
