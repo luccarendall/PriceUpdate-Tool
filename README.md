@@ -15,7 +15,7 @@ Antes de começar, você precisará ter instalado em sua máquina:
 
 ### Configuração do Banco de Dados
 
-Você deve configurar o MySQL com as seguintes variáveis de ambiente:
+Você deve ter no .env as seguintes variáveis de ambiente:
 
 - `PORT`: A porta onde o servidor MySQL está rodando.
 - `CONNECTION_STRING`: As informações de conexão com o banco de dados MySQL.
