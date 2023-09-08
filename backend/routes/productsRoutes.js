@@ -15,4 +15,20 @@ router.get('/products/:code', async (req, res) => { // utilizo :id para que seja
   res.json(results)
 });
 
+// rota de cadastro de novo produto
+router.post('/products', async (req, res) => {
+  const produto = req.body; // dados que o usuário vai enviar para cadastrar novo cliente. Os dados de cadastro vem no body da requisição
+  await db.postProduct(produto);
+  res.sendStatus(201); // 201 é o código http para cadastro realizado com sucesso
+});
+
+// rota para atualizar produto
+router.patch('/products/:code', async (req, res) => {
+const code = parseInt(req.params.code);
+const product = req.body;
+
+await db.updateProduct(code, product)
+res.sendStatus(200);
+});
+
 module.exports = router;
