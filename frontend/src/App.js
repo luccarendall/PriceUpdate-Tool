@@ -4,6 +4,9 @@ import './App.css'
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [csvFile, setCsvFile] = useState(null);
+  const [validateButtonDisabled, setValidateButtonDisabled] = useState(true);
+  const [updateButtonDisabled, setUpdateButtonDisabled] = useState(true);
 
   useEffect(() => {
     // Faça a chamada GET à API quando o componente for montado
@@ -15,6 +18,22 @@ function App() {
         console.error('Erro ao buscar produtos:', error);
       });
   }, []);
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setCsvFile(file);
+      setValidateButtonDisabled(false); // Habilita o botão "Verificar" quando um arquivo é selecionado
+    }
+  };
+
+  const handleVerifyBtn = () => {
+    console.log("Clicou em verificar")
+  };
+
+   const handleUpdateBtn = () => {
+    console.log("Clicou em atualizar")
+  };
 
   return (
     <div>
@@ -28,9 +47,10 @@ function App() {
           ))}
         </ul>
       </div>
+      <input type="file" className="csv-input" accept=".csv" onChange={handleFileChange} />
       <br />
-      <button>Validar</button>
-      <button>Atualizar</button>
+      <button onClick={handleVerifyBtn} disabled={validateButtonDisabled}>Validar</button>
+      <button onClick={handleUpdateBtn} disabled={updateButtonDisabled}>Atualizar</button>
     </div>
   );
 }

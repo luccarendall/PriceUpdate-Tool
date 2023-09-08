@@ -39,12 +39,18 @@ button {
   transition: background-color 0.3s;
 }
 
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
 button:hover {
   background-color: #0056b3;
 }
 
-.fileInput {
+.csv-input {
   font-size: 1em;
-  margin: 1em;
+  margin-top: 1.3em;
+  margin-bottom: 0.5em;
   color: #141414;
 }
