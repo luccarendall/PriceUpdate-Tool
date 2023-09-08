@@ -8,4 +8,11 @@ router.get('/products', async (req, res) => {
   res.json(results)
 });
 
+// rota para listar 1 produto especifico com base no código
+router.get('/products/:code', async (req, res) => { // utilizo :id para que seja uma variável, definida de acordo com o comportamento do usuário
+  const code = parseInt(req.params.code); // esse code vem como texto. uso o parseInt p transformar em número pq id é número.
+  const results = await db.getProductByCode(code)
+  res.json(results)
+});
+
 module.exports = router;

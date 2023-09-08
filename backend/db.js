@@ -14,7 +14,16 @@ const getPacks = async () => {
   return results[0];
 }
 
+// função para selecionar 1 produto pelo código
+const getProductByCode = async (code) => {
+  const results = await client.query("SELECT * FROM products WHERE code=?;", [code]) // ? simbola que  o valor do id é uma variável. O segundo parâmetro da query é a variável que vai substituir o ?. No caso o id de cada produto
+  // return products.find(product => product.id === id)
+  return results[0];
+}
+
+
 module.exports = {
   getProducts,
   getPacks,
+  getProductByCode,
 }
