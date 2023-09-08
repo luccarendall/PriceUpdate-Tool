@@ -25,26 +25,26 @@ Você deve configurar o MySQL com as seguintes variáveis de ambiente:
 1. Clone este repositório para sua máquina:
 
    ```bash
-   git clone https://github.com/seu-usuario/nome-do-repositorio.git
+   git clone git@github.com:luccarendall/Desafio-shopper.git
    ```
 
 2. Acesse o diretório do projeto:
 
    ```bash
-   cd nome-do-repositorio
+   cd desafio-shopper
    ```
 
 3. Instale as dependências do servidor:
 
    ```bash
-   cd server
+   cd backend
    npm install
    ```
 
 4. Instale as dependências do cliente:
 
    ```bash
-   cd client
+   cd frontend
    npm install
    ```
 
@@ -53,18 +53,18 @@ Você deve configurar o MySQL com as seguintes variáveis de ambiente:
 1. Inicie o servidor:
 
    ```bash
-   cd server
+   cd backend
    npm start
    ```
 
 2. Inicie o cliente:
 
    ```bash
-   cd client
+   cd frontend
    npm start
    ```
 
-Agora, a aplicação estará disponível em `http://localhost:3000`.
+Agora, a aplicação estará disponível localmente.
 
 ## Utilização
 
