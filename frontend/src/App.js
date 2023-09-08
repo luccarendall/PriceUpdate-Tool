@@ -1,6 +1,6 @@
-// src/App.js
 import React, { useState, useEffect } from 'react';
-import api from './api'; // Importe a instância do Axios configurada
+import api from './api';
+import './App.css'
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -17,15 +17,20 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <h1>Lista de Produtos</h1>
-      <ul>
-        {products.map((product) => (
-          <li key={product.id}>
-            {product.name} - {product.price}
-          </li>
-        ))}
-      </ul>
+    <div>
+      <h1>Sistema de Atualização de Preços</h1>
+      <div className="products-container">
+        <ul>
+          {products.map((product) => (
+            <li key={product.id}>
+              {product.code} - {product.name} - R$ {product.cost_price} - R$ {product.sales_price}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <br />
+      <button>Validar</button>
+      <button>Atualizar</button>
     </div>
   );
 }
