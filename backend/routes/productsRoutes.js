@@ -1,6 +1,22 @@
 const express = require('express');
 const db = require('../db');
 const router = express.Router();
+productSchema = require('../validation/productSchema')
+
+const validationMiddleware = (request, response, next) => {
+  const { error } = productSchema.validate(request.body)
+  const valid = error == null;
+
+  if (valid) {
+    next();
+  } else {
+    const { details } = error;
+    const message = details.map(i => i.message).join(',');
+
+    console.log("error", message);
+    response.status(422).json({ error: message })
+  }
+}
 
 // rota para listar os produtos cadastrados
 router.get('/products', async (req, res) => {
@@ -16,14 +32,14 @@ router.get('/products/:code', async (req, res) => { // utilizo :id para que seja
 });
 
 // rota de cadastro de novo produto
-router.post('/products', async (req, res) => {
+router.post('/products', validationMiddleware, async (req, res) => {
   const produto = req.body; // dados que o usuário vai enviar para cadastrar novo cliente. Os dados de cadastro vem no body da requisição
   await db.postProduct(produto);
   res.sendStatus(201); // 201 é o código http para cadastro realizado com sucesso
 });
 
 // rota para atualizar produto
-router.patch('/products/:code', async (req, res) => {
+router.patch('/products/:code', validationMiddleware, async (req, res) => {
 const code = parseInt(req.params.code);
 const product = req.body;
 
