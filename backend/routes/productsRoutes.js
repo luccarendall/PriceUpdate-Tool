@@ -1,22 +1,7 @@
 const express = require('express');
 const db = require('../db');
 const router = express.Router();
-productSchema = require('../validation/productSchema')
-
-const validationMiddleware = (request, response, next) => {
-  const { error } = productSchema.validate(request.body)
-  const valid = error == null;
-
-  if (valid) {
-    next();
-  } else {
-    const { details } = error;
-    const message = details.map(i => i.message).join(',');
-
-    console.log("error", message);
-    response.status(422).json({ error: message })
-  }
-}
+const validationMiddleware = require('./middlewares/validationMiddleware')
 
 // rota para listar os produtos cadastrados
 router.get('/products', async (req, res) => {
